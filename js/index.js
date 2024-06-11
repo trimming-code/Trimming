@@ -34,8 +34,6 @@ $(document).ready(function() {
 		container.empty();
 		if ('About' == moduleId) {
 			loadAbout(container);
-		} else if ('Issuereport' == moduleId) {
-			loadIssuereport(container);
 		} else if ('Diagnosis' == moduleId) {
 			loadDiagnosis(container);
 		}else{
@@ -49,9 +47,6 @@ $(document).ready(function() {
 
 	function loadAbout(container){
 		container.load('about.html');
-	}
-	function loadIssuereport(container){
-		container.load('issue_report.html');
 	}
 	function loadHome(container){
 		container.load('home.html');
