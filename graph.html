@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<style>.chart-container {
+	        height: 50vh;
+	        width: 100%;
+	        position: relative;
+	        display: flex;
+	        justify-content: space-between;
+	    }
+	
+	    .chart {
+	        flex: 1;
+	        height: 100%;
+	    }</style>
+	<img id="d-help" style="cursor:pointer; float: right; width: 5%;margin-right: 5%; top:50px;  position: relative; z-index: 999;"
+	 class="d-help-img" alt="help" src="img/help.gif">
+	<div id="d-help-win" class="d-help-win" style="display: none;">
+		<div id="win-title">Help
+			<span id="d-help-colse" class="close_2">
+				×
+			</span>
+		</div>
+		<div id="win-content">
+			<center><strong>
+					<font size="4" color="black">A demo of Slimming-2.0</font>
+				</strong></center>
+			<img id='help-gif' src="img/guide.gif" alt="avatar">
+		</div>
+	</div>
+	<div id="contains" style="background-color: whitesmoke; opacity: 0.8; height: 100%; color: black; position:relative;">
+		<div id='top-chart-container' class='chart-container'>
+		    <div id='project' class='chart' style='height: 100%;'></div>
+		    <div id='classes' class='chart' style='height: 100%;'></div>
+		    <div id='methods' class='chart' style='height: 100%;'></div>
+		</div>
+		<div id='bottom-chart-container' class='chart-container'>
+		    <div id='container' class='chart' style='height: 100%;'></div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/graph.js"></script>
+	<script type="text/javascript" src="js/node.js"></script>
+	<script type="text/javascript" src="js/help.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js">
+		const classesData = {
+			"usedClasses": 175,
+			"bloatedClasses": 3736
+		};
+		const methodsData = {
+			"usedMethods": 87930,
+			"bloatedMethods": 18604
+		};
+		const projectData = {
+			"usedProject": 39221,
+			"bloatedProject": 4785
+		};
+		const barData = {
+			"total": [106534, 3911, 44006],
+			"used": [87930, 175, 39221]
+		};
+		var projectOption = {
+			title: {
+				text: 'Used and bloated JAR size',
+				left: 'center'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: '{a} <br/>{b}: <strong>{c}</strong> (<strong>{d}%</strong>)'
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left'
+			},
+			series: [{
+				name: 'Access From',
+				type: 'pie',
+				radius: '50%',
+				data: [{
+					value: projectData.usedProject,
+					name: 'Used JAR size (KB)',
+					itemStyle: {
+						color: '#008000'
+					}
+				}, {
+					value: projectData.bloatedProject,
+					name: 'Bloated JAR size (KB)',
+					itemStyle: {
+						color: '#FFD700'
+					}
+				}],
+				emphasis: {
+					itemStyle: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}]
+		};
+		var classesOption = {
+			title: {
+				text: 'Used and bloated classes',
+				left: 'center'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: '{a} <br/>{b}: <strong>{c}</strong> (<strong>{d}%</strong>)'
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left'
+			},
+			series: [{
+				name: 'Access From',
+				type: 'pie',
+				radius: '50%',
+				data: [{
+					value: classesData.usedClasses,
+					name: 'Used classes',
+					itemStyle: {
+						color: '#008000'
+					}
+				}, {
+					value: classesData.bloatedClasses,
+					name: 'Bloated classes',
+					itemStyle: {
+						color: '#FFD700'
+					}
+				}],
+				emphasis: {
+					itemStyle: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}]
+		};
+		var methodsOption = {
+			title: {
+				text: 'Used and bloated methods',
+				left: 'center'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: '{a} <br/>{b}: <strong>{c}</strong> (<strong>{d}%</strong>)'
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left'
+			},
+			series: [{
+				name: 'Access From',
+				type: 'pie',
+				radius: '50%',
+				data: [{
+					value: methodsData.usedMethods,
+					name: 'Used methods',
+					itemStyle: {
+						color: '#008000'
+					}
+				}, {
+					value: methodsData.bloatedMethods,
+					name: 'Bloated methods',
+					itemStyle: {
+						color: '#FFD700'
+					}
+				}],
+				emphasis: {
+					itemStyle: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}]
+		};
+		var barOption = {
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'shadow'
+				}
+			},
+			legend: {},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: {
+				type: 'value',
+				boundaryGap: [0, 0.01]
+			},
+			yAxis: {
+				type: 'category',
+				data: ['# Methods', '# Classes', 'Project JAR size (KB)']
+			},
+			series: [{
+				name: 'Total',
+				type: 'bar',
+				data: barData.total
+			}, {
+				name: 'Used',
+				type: 'bar',
+				data: barData.used
+			}]
+		};
+		var project = echarts.init(document.getElementById('project'));
+		project.setOption(projectOption);
+		var classes = echarts.init(document.getElementById('classes'));
+		classes.setOption(classesOption);
+		var methods = echarts.init(document.getElementById('methods'));
+		methods.setOption(methodsOption);
+		var barChart = echarts.init(document.getElementById('container'));
+		barChart.setOption(barOption);
+		window.addEventListener('resize', function() {
+			project.resize();
+			classes.resize();
+			methods.resize();
+			barChart.resize();
+		});
+	</script>
+</html>
