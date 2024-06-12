@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
-	<span style="font-family: Palatino Linotype">
+	<span style="font-family:book antiqua;font-size: 20px; line-height: 2;">
+	<span>&#9658;</span>&nbsp;&nbsp;&nbsp;&nbsp;Result of Slimming-2.0<br/>
+	</span>
+	<!-- <span style="font-family: Palatino Linotype; line-height: 1.5;font-size: 15px">
 		<!-- <div class="baseScroll" style="width:100%;height:525px;overflow-y: scroll"> -->
-		<code style="font-size: 20px; color: burlywood;">
+		
+<code style="font-size: 20px; color: burlywood;line-height: 1.5;">
 <pre>
 project
 ├── src
 │   ├── test
 │   └── main
-└── .debloat                                 // result of Slimming-2.0
-	├── *-with-dependencies-original.jar     // project original JAR
-	├── *-with-dependencies-debloated.jar    // project debloated JAR
+└── .debloat                                 <span style="color: orange;">&nbsp;&nbsp;// Result of Slimming-2.0</span>
+	├── *-with-dependencies-original.jar     <span style="color: orange;">// Project original JAR</span>
+	├── *-with-dependencies-debloated.jar    <span style="color: orange;">// Project debloated JAR</span>
 	└── runResult.log                        
 </pre>
 </code>
+<span style="font-family:book antiqua;font-size: 20px; line-height: 2;">
+<span>&#9658;</span>&nbsp;&nbsp;&nbsp;&nbsp;RunResult.log<br/>
+</span>
+<code style="font-size: 20px; color: burlywood; line-height: 1.5;">
 <pre>
-runResult.log
-originalSize:44006        // Size:KB
-debloatedSize:39154       // Size:KB
-runTime:216301            // Time:ms
+originalSize:44006        <span style="color: orange;">// Size:KB</span>
+debloatedSize:39154       <span style="color: orange;">// Size:KB</span>
+runTime:216301            <span style="color: orange;">// Time:ms</span>
 bloatedClassesSize:3788   
 bloatedMethodsSize:18960
-testsRun:Tests run: 27, Failures: 0, Errors: 0, Skipped: 0  // After running test cases on the debloated project
+testsRun:Tests run: 27, Failures: 0, Errors: 0, Skipped: 0  <span style="color: orange;">// Running test cases on the debloated project</span>
 </pre>
-
-</span>
+</code>
 </html>
