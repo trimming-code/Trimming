@@ -103,3 +103,10 @@ ul {
 .run-table{
 	padding: 5%;
 }
+
+.about_content {
+  height: 60%; /* 设置固定宽度 */
+  overflow-y: auto; /* 允许水平滚动 */
+  white-space: nowrap; /* 防止内容换行 */
+  border: 1px solid #ccc; /* 可选，增加边框方便查看 */
+}
